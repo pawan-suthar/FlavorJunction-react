@@ -1,9 +1,13 @@
-
+import CategoryMenu from "../components/CategoryMenu";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <Navbar />
+      <CategoryMenu/>
+    </>
+  );
+};
 
-export default Home
+export default Home;
