@@ -9,6 +9,9 @@ const Cart = () => {
 
   const cartitems = useSelector((state) => state.cart.cart);
 
+  const total = cartitems.reduce((totalqty, item) => totalqty + item.qty, 0);
+  const totalprice = cartitems.reduce((total, item) => total + item.qty * item.price, 0);
+
   return (
     <>
       <div
@@ -38,8 +41,8 @@ const Cart = () => {
         }) : <h2 className="text-center text-xl font-semibold text-gray-800">Your Cart Empty</h2>}
 
         <div className="absolute bottom-6 p-5">
-          <h3 className="font-semibold text-gray-800">Items: </h3>
-          <h3 className="font-semibold text-gray-800">Total: </h3>
+          <h3 className="font-semibold text-gray-800">Items:{total} </h3>
+          <h3 className="font-semibold text-gray-800">Total:{totalprice} </h3>
           <hr className="w-[90vw] lg:w-[18vw] my-2" />
           <button className="bg-green-500 mt-2 font-semibold px-3 text-white py-2 rounded-lg w-[90vw] lg:w-[18vw]">
             Checkout
@@ -48,7 +51,7 @@ const Cart = () => {
       </div>
       <FaShoppingCart
         onClick={() => setactive(!active)}
-        className=" cursor-pointer rounded-full bg-white shadow-md text-4xl p-3 fixed bottom-4 right-4 "
+        className={`cursor-pointer rounded-full bg-white shadow-md text-4xl p-3 fixed bottom-4 right-4 ${total>0 && "animate-bounce delay-500 transition-all"} `}
       />
     </>
   );
